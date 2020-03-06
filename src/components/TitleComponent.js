@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: "700",
-    fontSize: 30,
+    fontSize: 22,
   },
   textRed: {  
     color: '#D63030',
