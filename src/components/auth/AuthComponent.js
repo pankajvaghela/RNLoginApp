@@ -20,7 +20,14 @@ export default class AuthComponent extends React.Component {
       <View style={styles.container}>
         <LoginForm />
         <Hr color="#ccc" textColor="#ccc"  style={ styles.separator } > OR </Hr>
-        <SocialLoginButtons />
+        <SocialLoginButtons style={ styles.socialBtns }/>
+          <View style={[styles.flexCenter]}>
+            <Text>Don't have an account?</Text>
+            <Text style={{color:"#4B178B", marginLeft: 5,  textDecorationLine: "underline"}}>Signup</Text>
+          </View>
+          <View style={[styles.flexCenter]}>
+            <Text style={{color:"#ccc", marginVertical: 10, textDecorationLine: "underline"}}>Login Later</Text>
+          </View>
       </View>
     );
   }
@@ -33,8 +40,16 @@ const styles = StyleSheet.create({
     alignItems:"stretch",
   },
   separator : {
-    backgroundColor:"#fff", 
     color:"#000",
-    marginVertical: 5
+    marginVertical: 10
+  },
+  flexCenter: {
+    flexDirection:"row", 
+    justifyContent:"center"
+  },
+  signupSec : {
+  },
+  loginLater: {
+
   }
 });

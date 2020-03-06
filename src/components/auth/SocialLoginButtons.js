@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
 
-export default class LoginForm extends React.Component {
+export default class SocialLoginButtons extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -13,10 +13,10 @@ export default class LoginForm extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.socialbtn} onPress={this.onLogin.bind(this)}>
+        <Text style={[styles.socialbtn, styles.fbBtn]} onPress={this.onLogin.bind(this)}>
           Login with Facebook
         </Text>
-        <Text style={styles.socialbtn} onPress={this.onLogin.bind(this)}>
+        <Text style={[styles.socialbtn, styles.gBtn]} onPress={this.onLogin.bind(this)}>
           Login with Google
         </Text>
       </View>
@@ -26,19 +26,26 @@ export default class LoginForm extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     color: '#000',
+    paddingVertical:20
+    // backgroundColor: "#8ff"
   },
   socialbtn: {
     padding: 8,
     paddingHorizontal: 15,
     backgroundColor: 'rgb(192,192,192)',
-    borderWidth: 1,
-    borderColor: 'rgb(192,192,192)',
     marginBottom: 10,
     marginHorizontal: 10,
+    color: "#fff"
   },
+  fbBtn : {
+    backgroundColor : "#507cc0",
+  },
+  gBtn : {
+    backgroundColor : "#4185f4",
+
+  }
 });
