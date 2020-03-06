@@ -19,7 +19,7 @@ export default class AuthComponent extends React.Component {
     return(
       <View style={styles.container}>
         <LoginForm />
-        <Hr  style={ styles.separator } > OR </Hr>
+        <Hr color="#ccc" textColor="#ccc"  style={ styles.separator } > OR </Hr>
         <SocialLoginButtons />
       </View>
     );
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   },
   separator : {
     backgroundColor:"#fff", 
-    color:"#000"
+    color:"#000",
+    marginVertical: 5
   }
 });

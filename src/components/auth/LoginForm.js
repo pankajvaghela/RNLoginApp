@@ -44,17 +44,21 @@ export default class LoginForm extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    display:"flex",
     alignItems: 'center',
     justifyContent: 'center',
     color : "#000", 
+    // backgroundColor: "#4B170B",
   },
   input: {
-    padding: 10,
+    width:220,
+    padding: 5,
+    paddingHorizontal: 15,
     borderWidth: 1,
+    borderRadius:2,
     borderColor: 'rgb(192,192,192)',
     backgroundColor: 'rgb(247,247,247)',
-    marginBottom: 10
+    marginVertical: 10,
   },
   loginBtn: {
     backgroundColor: "#4B178B",
