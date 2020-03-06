@@ -1486,6 +1486,18 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.9.1.tgz#7e33d8f7d449b3f673cd72deb9abdc552dbe528e"
   integrity sha512-wMHVg2EOHaMRxbzgFJ9gtjOOCrI80OHLG14rxi28XwOW8ux6IiEbRCGGGqCtdAIg4FQCbW20k9RsT4y3gJlFug==
 
+azir-hr@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/azir-hr/-/azir-hr-1.0.1.tgz#9888fb323f0567ad808faf41ff36282d1182c90d"
+  integrity sha512-ed39LERk4z+xo65LLui1jF9MlBx5bxRO43O1l8aPlKrfabnK67kM9fzwouR+vGEfOT4tUEKRuuIs/Pa0JVjrgA==
+  dependencies:
+    azir-theme "^1.x.x"
+
+azir-theme@^1.x.x:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/azir-theme/-/azir-theme-1.0.9.tgz#15e48f8add17a1b2395ebc0a8c5c1ac44fcb48f0"
+  integrity sha512-EXNrAtTeBQkY5QSKgUfY0QbCxhV3LjZ6x+QTvJF6oisPILnW+03Qd9qKHe387eR9nhs59qFYZ7dxvI3LMRYxfw==
+
 babel-eslint@10.0.3:
   version "10.0.3"
   resolved "https://registry.yarnpkg.com/babel-eslint/-/babel-eslint-10.0.3.tgz#81a2c669be0f205e19462fed2482d33e4687a88a"
@@ -5427,6 +5439,11 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   version "16.13.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
+
+react-native-ionicons@^4.6.4:
+  version "4.6.4"
+  resolved "https://registry.yarnpkg.com/react-native-ionicons/-/react-native-ionicons-4.6.4.tgz#4b3242e436df181f19f093c6696b1d4cf0f3ece2"
+  integrity sha512-ehvaGReQvoYX3D6M5njm88grJOsFzuFVZ7lvY9/u3jKYfi6qexPNmZ4nAIhtYSiHRx3YsOSXDlaoWTHl0Z+qJw==
 
 react-native@0.61.5:
   version "0.61.5"

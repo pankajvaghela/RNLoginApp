@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: 'rgb(192,192,192)',
-    placeholderTextColor: 'rgb(192,192,192)',
     backgroundColor: 'rgb(247,247,247)',
     marginBottom: 10
   },

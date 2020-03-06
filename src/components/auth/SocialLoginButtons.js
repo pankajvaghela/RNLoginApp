@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    placeholderTextColor: 'rgb(192,192,192)',
     color: '#000',
   },
   socialbtn: {

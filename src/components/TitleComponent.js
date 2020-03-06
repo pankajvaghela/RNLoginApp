@@ -20,7 +20,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    backgroundColor: '#ff220p',
+    backgroundColor: '#ffffff',
     width: vWidth,
     alignItems: 'center',
     justifyContent: 'center',
@@ -28,10 +28,10 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   title: {
-    fontWeight: 700,
+    fontWeight: "700",
     fontSize: 20,
   },
-  textRed: {
+  textRed: {  
     color: '#D63030',
   },
   textBox: {
