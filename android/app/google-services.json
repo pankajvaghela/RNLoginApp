@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "374863705755",
+    "firebase_url": "https://socialauthrn.firebaseio.com",
+    "project_id": "socialauthrn",
+    "storage_bucket": "socialauthrn.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374863705755:android:6212476609d8c8c126383e",
+        "android_client_info": {
+          "package_name": "com.rnloginapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374863705755-jfob7k8uifi5cbln89t8sf4qrsu8rmg7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIG5pexGBd1vhOweszSnSSKjB3Cfpv43s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374863705755-jfob7k8uifi5cbln89t8sf4qrsu8rmg7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

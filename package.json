@@ -1,5 +1,5 @@
 {
-  "name": "RNLoginApp",
+  "name": "rnloginapp",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,6 +13,9 @@
     "azir-hr": "^1.0.1",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-fbsdk": "^1.1.2",
+    "react-native-firebase": "^5.6.0",
+    "react-native-google-signin": "^2.1.1",
     "react-native-ionicons": "^4.6.4"
   },
   "devDependencies": {

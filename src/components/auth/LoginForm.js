@@ -1,6 +1,14 @@
 import React from 'react';
 import {Text, Button, TextInput, View, StyleSheet } from 'react-native';
 
+import firebase from 'react-native-firebase';
+
+firebase.auth().signInAnonymously()
+  .then((user) => {
+    console.log(user);
+  });
+
+
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
