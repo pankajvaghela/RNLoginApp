@@ -1,13 +1,11 @@
 import React from 'react';
-import {Text, Button, TextInput, View, StyleSheet } from 'react-native';
+import {Text, Button, TextInput, View, StyleSheet, ActivityIndicator } from 'react-native';
 
 import firebase from 'react-native-firebase';
 
-firebase.auth().signInAnonymously()
-  .then((user) => {
-    console.log(user);
-  });
 
+const API_BASE = "https://reqres.in";  
+const API_LOGIN = `${API_BASE}/api/login`;
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -16,20 +14,48 @@ export default class LoginForm extends React.Component {
     this.state = {
       username: '',
       password: '',
+      isLoading : false,
     };
   }
   
-  onLogin() {
-    const { username, password } = this.state;
+  async onLogin() {
+    const { email, password } = this.state;
+
+    this.setState({
+      isLoading : true
+    })
+    try {
+      let response = await fetch(API_LOGIN, {
+                      method: 'POST',
+                      headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({
+                        email: email,
+                        password: password,
+                      }),
+                    });
+
+
+    this.setState({
+      isLoading : false
+    })
+      let responseJson = await response.json();
+      console.info(responseJson);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
+  
   render() {
     return (
       <View style={styles.container}>
         <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={'Username'}
+          value={this.state.email}
+          onChangeText={(email) => this.setState({ email })}
+          placeholder={'Email'}
           style={styles.input}
         />
         <TextInput
@@ -40,6 +66,7 @@ export default class LoginForm extends React.Component {
           style={styles.input}
         />
         
+        <ActivityIndicator size="small" color="#f33" animating={this.state.isLoading}  />
         <Text
           title={'Login'}
           style={[styles.loginBtn]}

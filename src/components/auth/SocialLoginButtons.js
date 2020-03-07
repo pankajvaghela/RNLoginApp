@@ -1,5 +1,7 @@
 import React from 'react';
 import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
+import { facebookLogin } from './social/FbLogin';
+import { googleLogin } from './social/GoogleLogin';
 
 export default class SocialLoginButtons extends React.Component {
   constructor(props) {
@@ -10,13 +12,24 @@ export default class SocialLoginButtons extends React.Component {
     const { username, password } = this.state;
   }
 
+  async fbLogin(){
+    let user = await facebookLogin();
+
+    console.info(user);
+  }
+  async gLogin(){
+    let user = await googleLogin();
+
+    console.info(user);
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.socialbtn, styles.fbBtn]} onPress={this.onLogin.bind(this)}>
+        <Text style={[styles.socialbtn, styles.fbBtn]} onPress={this.fbLogin.bind(this)}>
           Login with Facebook
         </Text>
-        <Text style={[styles.socialbtn, styles.gBtn]} onPress={this.onLogin.bind(this)}>
+        <Text style={[styles.socialbtn, styles.gBtn]} onPress={this.gLogin.bind(this)}>
           Login with Google
         </Text>
       </View>
