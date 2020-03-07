@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, KeyboardAvoidingView  } from 'react-native';
 import HeroComponent from '../components/HeroComponent';
 import TitleComponent from '../components/TitleComponent';
 import AuthComponent from '../components/auth/AuthComponent';
@@ -11,11 +11,13 @@ var vHeight = Dimensions.get('window').height; //full height
 export default class LoginScreen extends React.Component {
   render(){
     return (
-      <View style={styles.container}>
-      <HeroComponent />
-      <TitleComponent />     
-      <AuthComponent />
-    </View>
+        <KeyboardAvoidingView  behavior='position' style={{marginBottom:80}}>
+          <View style={styles.container}>
+              <HeroComponent />
+              <TitleComponent />     
+              <AuthComponent />
+          </View>
+        </KeyboardAvoidingView>
     );
   }
 }
