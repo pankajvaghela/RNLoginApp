@@ -1,11 +1,9 @@
-import 'react-native-gesture-handler';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import { isLoggedIn } from './controllers/auth/LoginController';
 import SplashScreen from './screens/SplashScreen';
-import { NavigationContainer } from '@react-navigation/native';
 
 export default class App extends React.Component {
 
@@ -28,13 +26,11 @@ export default class App extends React.Component {
 
   render(){    
     return (
-      <NavigationContainer>
-        <View style={styles.container}>        
-          { (this.state.isLoggedIn === -1) && <SplashScreen />}
-          { (this.state.isLoggedIn === 0) && <LoginScreen />}
-          { (this.state.isLoggedIn === 1) && <HomeScreen />}
-        </View>
-      </NavigationContainer>
+      <View style={styles.container}>        
+        { (this.state.isLoggedIn === -1) && <SplashScreen />}
+        { (this.state.isLoggedIn === 0) && <LoginScreen />}
+        { (this.state.isLoggedIn === 1) && <HomeScreen />}
+      </View>
     );
   }
 }
