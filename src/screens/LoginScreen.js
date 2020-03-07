@@ -11,7 +11,7 @@ var vHeight = Dimensions.get('window').height; //full height
 export default class LoginScreen extends React.Component {
   render(){
     return (
-        <KeyboardAvoidingView  behavior='position' style={{marginBottom:80}}>
+        <KeyboardAvoidingView  behavior='position' style={{marginBottom:0}}>
           <View style={styles.container}>
               <HeroComponent />
               <TitleComponent />     

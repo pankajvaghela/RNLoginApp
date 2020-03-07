@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
 import { facebookLogin } from './social/FbLogin';
 import { googleLogin } from './social/GoogleLogin';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 
 export default class SocialLoginButtons extends React.Component {
   constructor(props) {
@@ -26,12 +27,17 @@ export default class SocialLoginButtons extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        
         <Text style={[styles.socialbtn, styles.fbBtn]} onPress={this.fbLogin.bind(this)}>
           Login with Facebook
         </Text>
-        <Text style={[styles.socialbtn, styles.gBtn]} onPress={this.gLogin.bind(this)}>
-          Login with Google
-        </Text>
+
+        <GoogleSigninButton
+          style={[styles.socialbtn, styles.gBtn,{ width: 190, height: 48 }]}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={this.gLogin.bind(this)} />
+        
       </View>
     );
   }
@@ -49,16 +55,13 @@ const styles = StyleSheet.create({
   socialbtn: {
     padding: 8,
     paddingHorizontal: 15,
-    backgroundColor: 'rgb(192,192,192)',
     marginBottom: 10,
     marginHorizontal: 10,
-    color: "#fff"
   },
   fbBtn : {
-    backgroundColor : "#507cc0",
+    backgroundColor : "#3b5998",
+    color:"white"
   },
   gBtn : {
-    backgroundColor : "#4185f4",
-
   }
 });

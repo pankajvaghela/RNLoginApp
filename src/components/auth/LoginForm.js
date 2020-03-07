@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, Button, TextInput, View, StyleSheet, ActivityIndicator } from 'react-native';
+import {Text, Button, TextInput, View, StyleSheet, ActivityIndicator, TouchableNativeFeedback } from 'react-native';
 
 import firebase from 'react-native-firebase';
+import { saveLogin, getUser } from '../../controllers/auth/LoginController';
 
 
 const API_BASE = "https://reqres.in";  
@@ -19,12 +20,14 @@ export default class LoginForm extends React.Component {
   }
   
   async onLogin() {
-    const { email, password } = this.state;
 
-    this.setState({
-      isLoading : true
-    })
+    if(this.state.isLoading) return;
+    this.setState((pS) => ({ ...pS, isLoading : true }))
+
     try {
+
+      const { email, password } = this.state;
+
       let response = await fetch(API_LOGIN, {
                       method: 'POST',
                       headers: {
@@ -37,12 +40,18 @@ export default class LoginForm extends React.Component {
                       }),
                     });
 
-
-    this.setState({
-      isLoading : false
-    })
+      this.setState((pS) => ({ ...pS, isLoading : false }))
       let responseJson = await response.json();
+
       console.info(responseJson);
+      console.log("done logging in");
+
+      let sStatus = await saveLogin({ email, token : responseJson.token}, "email");
+
+      console.log("Save statys" , sStatus);
+      console.log("getting logged in user");
+      let nU =await getUser();
+      console.log(nU);
     } catch (error) {
       console.error(error);
     }
@@ -66,12 +75,15 @@ export default class LoginForm extends React.Component {
           style={styles.input}
         />
         
-        <ActivityIndicator size="small" color="#f33" animating={this.state.isLoading}  />
-        <Text
-          title={'Login'}
-          style={[styles.loginBtn]}
+        
+        <TouchableNativeFeedback
           onPress={this.onLogin.bind(this)}
-        >Login</Text>
+          background={TouchableNativeFeedback.SelectableBackground()}>
+            <View style={[styles.loginBtn]} >
+                <Text style={styles.loginBtnText} >Login</Text>
+                { this.state.isLoading && <ActivityIndicator size="small" color="#fff" style={{marginLeft:10}}/> }
+            </View>
+        </TouchableNativeFeedback>
       </View>
     );
   }
@@ -96,12 +108,15 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   loginBtn: {
+    flexDirection: "row",
     backgroundColor: "#4B178B",
-    color:"white",
     margin:10,
     padding:10,
-    paddingHorizontal:50,
+    paddingHorizontal:30,
     borderRadius:3
-
+  },
+  loginBtnText:{
+    color:"white",
+    marginRight: 0
   }
 });
