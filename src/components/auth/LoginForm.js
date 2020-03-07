@@ -1,14 +1,13 @@
 import React from 'react';
 import {Text, Button, TextInput, View, StyleSheet, ActivityIndicator, TouchableNativeFeedback } from 'react-native';
-
-import firebase from 'react-native-firebase';
 import { saveLogin, getUser } from '../../controllers/auth/LoginController';
 
+import ValidationComponent from 'react-native-form-validator';
 
 const API_BASE = "https://reqres.in";  
 const API_LOGIN = `${API_BASE}/api/login`;
 
-export default class LoginForm extends React.Component {
+export default class LoginForm extends ValidationComponent {
   constructor(props) {
     super(props);
     
@@ -22,36 +21,45 @@ export default class LoginForm extends React.Component {
   async onLogin() {
 
     if(this.state.isLoading) return;
-    this.setState((pS) => ({ ...pS, isLoading : true }))
 
     try {
 
       const { email, password } = this.state;
 
-      let response = await fetch(API_LOGIN, {
-                      method: 'POST',
-                      headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                        email: email,
-                        password: password,
-                      }),
-                    });
+      let isValid = await this.validate({
+        email: {email: true},
+        password: {minlength:8, required: true},
+      });
+      
+      console.log("isValid", isValid);
+      
+      if(isValid){
+        console.log("isValid inside");
 
-      this.setState((pS) => ({ ...pS, isLoading : false }))
-      let responseJson = await response.json();
+        this.setState((pS) => ({ ...pS, isLoading : true }))
 
-      console.info(responseJson);
-      console.log("done logging in");
-
-      let sStatus = await saveLogin({ email, token : responseJson.token}, "email");
-
-      console.log("Save statys" , sStatus);
-      console.log("getting logged in user");
-      let nU =await getUser();
-      console.log(nU);
+        let response = await fetch(API_LOGIN, {
+                        method: 'POST',
+                        headers: {
+                          Accept: 'application/json',
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          email: email,
+                          password: password,
+                        }),
+                      });
+  
+        this.setState((pS) => ({ ...pS, isLoading : false }))
+        let responseJson = await response.json();
+  
+        console.info(responseJson);
+        console.log("done logging in");
+  
+        let sStatus = await saveLogin({ email, token : responseJson.token}, "email");
+  
+        console.log("User Saved" , sStatus);        
+      }
     } catch (error) {
       console.error(error);
     }
@@ -62,14 +70,17 @@ export default class LoginForm extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput
-          value={this.state.email}
+          ref="email"
           onChangeText={(email) => this.setState({ email })}
+          value={this.state.email}
           placeholder={'Email'}
           style={styles.input}
         />
+          
         <TextInput
-          value={this.state.password}
+          ref="password"
           onChangeText={(password) => this.setState({ password })}
+          value={this.state.password}
           placeholder={'Password'}
           secureTextEntry={true}
           style={styles.input}
@@ -84,6 +95,10 @@ export default class LoginForm extends React.Component {
                 { this.state.isLoading && <ActivityIndicator size="small" color="#fff" style={{marginLeft:10}}/> }
             </View>
         </TouchableNativeFeedback>
+
+        <Text>
+            {this.getErrorMessages()}
+          </Text>
       </View>
     );
   }

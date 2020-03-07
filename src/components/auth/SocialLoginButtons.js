@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
-// import { facebookLogin } from '../../controllers/auth/social/FbLogin';
-// import { googleLogin } from '../../controllers/auth/social/GoogleLogin';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { facebookLogin } from './../../controllers/auth/social/facebookLogin';
 import { googleLogin } from './../../controllers/auth/social/googleLogin';
 import { saveLogin } from '../../controllers/auth/LoginController';
+
 
 export default class SocialLoginButtons extends React.Component {
   constructor(props) {
@@ -32,11 +32,16 @@ export default class SocialLoginButtons extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        
-        <Text style={[styles.socialbtn, styles.fbBtn]} onPress={this.fbLogin.bind(this)}>
-          Login with Facebook
-        </Text>
-
+        <Icon.Button
+          name="facebook"
+          backgroundColor="#3b5998"
+          onPress={this.fbLogin.bind(this)}
+          style={[styles.socialbtn, styles.fbBtn]} 
+        >
+          <Text  style={[styles.fbBtn]}>
+            Login with Facebook
+          </Text>
+        </Icon.Button>
         <GoogleSigninButton
           style={[styles.socialbtn, styles.gBtn,{ width: 190, height: 48 }]}
           size={GoogleSigninButton.Size.Wide}
@@ -55,18 +60,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     color: '#000',
     paddingVertical:20
-    // backgroundColor: "#8ff"
   },
   socialbtn: {
-    padding: 8,
-    paddingHorizontal: 15,
-    marginBottom: 10,
-    marginHorizontal: 10,
   },
-  fbBtn : {
-    backgroundColor : "#3b5998",
-    color:"white"
+  fbBtn : {    
+    color:"white",
+    paddingBottom:5
   },
-  gBtn : {
-  }
 });

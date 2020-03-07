@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
-import HeroComponent from '../components/HeroComponent';
-import Icon from 'react-native-ionicons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 var vWidth = Dimensions.get('window').width; //full width
 
@@ -15,6 +15,7 @@ export default function LoginScreen() {
         </View>
       </View>
       <Text style={[styles.title]}> HAI </Text>
+      <Icon name="glass-cocktail" size={30} color="#f00" />
     </View>
   );
 }
