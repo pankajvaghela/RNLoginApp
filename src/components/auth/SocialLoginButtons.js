@@ -1,8 +1,10 @@
 import React from 'react';
 import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
-import { facebookLogin } from './social/FbLogin';
-import { googleLogin } from './social/GoogleLogin';
+// import { facebookLogin } from '../../controllers/auth/social/FbLogin';
+// import { googleLogin } from '../../controllers/auth/social/GoogleLogin';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
+import { facebookLogin } from './../../controllers/auth/social/facebookLogin';
+import { googleLogin } from './../../controllers/auth/social/googleLogin';
 
 export default class SocialLoginButtons extends React.Component {
   constructor(props) {

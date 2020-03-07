@@ -5,8 +5,6 @@ import TitleComponent from '../components/TitleComponent';
 import AuthComponent from '../components/auth/AuthComponent';
 
 var vWidth = Dimensions.get('window').width; //full width
-var vHeight = Dimensions.get('window').height; //full height
-
 
 export default class LoginScreen extends React.Component {
   render(){

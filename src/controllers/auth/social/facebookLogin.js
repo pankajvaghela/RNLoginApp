@@ -38,3 +38,11 @@ export async function facebookLogin() {
         console.error(e);
     }
 }
+
+export const fbLogout = async () => {
+    try {
+        await LoginManager.logOut
+    } catch (error) {
+        console.error(error);
+    }
+};
