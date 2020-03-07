@@ -1,4 +1,11 @@
 import AsyncStorage from '@react-native-community/async-storage';
+import EventBus from 'react-native-event-bus'
+import { googleLogout } from './social/googleLogin';
+import { facebookLogout } from './social/facebookLogin';
+
+
+export const E_LOGIN = "login_event";
+export const E_LOGOUT = "logout_event";
 
 const IS_LOGGED_IN = "isLoggedIn";
 const USER = 'user';
@@ -24,7 +31,9 @@ export const saveLogin = async (user, provider="email") => {
 
         return await AsyncStorage.multiSet(data, (err,res)=>{
             if(err) {console.log(err); return false;}
-
+            EventBus.getInstance().fireEvent(E_LOGIN, {
+                user
+            })
             console.log("Saved user");
             return true;
         });
@@ -35,11 +44,22 @@ export const saveLogin = async (user, provider="email") => {
 }
 
 export const logout = async () => {
+
+    let provider = await AsyncStorage.getItem(PROVIDER, (err, res)=>{
+        if(err){ return false; }
+        return JSON.parse(res);
+    });
+    if(provider == 'google') googleLogout();
+    if(provider == 'facebook') facebookLogout();
+        
     return await AsyncStorage.multiRemove([USER, IS_LOGGED_IN],(err, res)=>{
         if(err){ return null; }
+        EventBus.getInstance().fireEvent(E_LOGOUT, {provider : JSON.parse(provider)});
+        facebookLogout();
         console.log("Logged Out");
         return true;
     });
+
 } 
 
 export const isLoggedIn = async () => {

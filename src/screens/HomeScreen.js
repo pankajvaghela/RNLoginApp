@@ -32,14 +32,26 @@ export default class HomeScreen extends React.Component {
     }
 
     render(){
+
+        let email = this.state.user.email;
+        if(!email && this.state.user.providerData ){
+            email = this.state.user.providerData[0].email;
+        }
+
+        let name;
+        if(this.state.user.providerData){
+            name = this.state.user.providerData[0].displayName;
+        }
+
         return (
             <BasicLayout>
                 <View>
-                    <Text style={[styles.mb]}>You are Logged in</Text>
+                    <Text style={[styles.mb]}>Welcome. You are Logged in</Text>
                     
                     <View style={[styles.mb]}>
                         {!!this.state.provider &&(<Text>Provider : {this.state.provider} </Text>)}
-                        {!!this.state.user.email &&(<Text>Email : {this.state.user.email} </Text>)}
+                        {!!name &&(<Text>Name : {name} </Text>)}
+                        {!!email &&(<Text>Email : {email} </Text>)}
                     </View>
 
                     <View>

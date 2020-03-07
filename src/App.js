@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import EventBus from 'react-native-event-bus';
+
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
-import { isLoggedIn } from './controllers/auth/LoginController';
 import SplashScreen from './screens/SplashScreen';
+import { isLoggedIn, E_LOGIN, E_LOGOUT } from './controllers/auth/LoginController';
 
 export default class App extends React.Component {
 
@@ -13,9 +15,29 @@ export default class App extends React.Component {
     this.state = {
       isLoggedIn : -1,
     }
+    this.checkLoginStatus = this.checkLoginStatus.bind(this)
   }
 
   componentDidMount(){
+    this.checkLoginStatus()
+
+    EventBus.getInstance().addListener(E_LOGIN, this.loginlistener = data => {
+      this.checkLoginStatus();
+    })
+
+    EventBus.getInstance().addListener(E_LOGOUT, this.logoutlistener = data => {
+      console.log(data);  
+      this.checkLoginStatus();
+    })
+  }
+
+
+componentWillUnmount() {
+  EventBus.getInstance().removeListener(this.loginlistener);
+  EventBus.getInstance().removeListener(this.logoutlistener);
+}
+
+  checkLoginStatus(){
     isLoggedIn().then(res => {
         console.log("response for is logged in",res);      
         this.setState(()=>({

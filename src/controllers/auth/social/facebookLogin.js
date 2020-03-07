@@ -31,15 +31,13 @@ export async function facebookLogin() {
         // login with credential
         const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
 
-        console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
-
         return firebaseUserCredential.user;
     } catch (e) {
         console.error(e);
     }
 }
 
-export const fbLogout = async () => {
+export const facebookLogout = async () => {
     try {
         await LoginManager.logOut
     } catch (error) {

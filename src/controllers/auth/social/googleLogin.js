@@ -2,12 +2,13 @@ import { GoogleSignin } from 'react-native-google-signin';
 import firebase from 'react-native-firebase'
 
 // Calling this function will open Google for login.
-export async function googleLogin() {
+export const googleLogin = async () => {
   try {
     // add any configuration settings here:
     await GoogleSignin.configure({
       webClientId : "374863705755-jfob7k8uifi5cbln89t8sf4qrsu8rmg7.apps.googleusercontent.com",
       androidClientId : "374863705755-n7ielk8fmecbshvplurr6ih5riv62fg5.apps.googleusercontent.com",
+      forceConsentPrompt:true,
     });
 
     const data = await GoogleSignin.signIn();

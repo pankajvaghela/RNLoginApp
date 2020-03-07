@@ -5,6 +5,7 @@ import { Text, Button, TextInput, View, StyleSheet } from 'react-native';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { facebookLogin } from './../../controllers/auth/social/facebookLogin';
 import { googleLogin } from './../../controllers/auth/social/googleLogin';
+import { saveLogin } from '../../controllers/auth/LoginController';
 
 export default class SocialLoginButtons extends React.Component {
   constructor(props) {
@@ -18,11 +19,13 @@ export default class SocialLoginButtons extends React.Component {
   async fbLogin(){
     let user = await facebookLogin();
 
+    saveLogin(user, 'facebook');
     console.info(user);
   }
   async gLogin(){
     let user = await googleLogin();
 
+    saveLogin(user, 'google');
     console.info(user);
   }
 
