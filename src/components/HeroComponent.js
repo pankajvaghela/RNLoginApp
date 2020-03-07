@@ -13,7 +13,7 @@ export default function HeroComponent() {
   return (
     <View style={styles.container} >
       <View style={styles.shape} >
-        <Image style={styles.image} source={require('../assets/login_hero.svg')} />
+        <Image style={styles.image} source={require('../assets/login_hero.png')} />
       </View>
     </View>
   );
